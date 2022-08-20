@@ -61,7 +61,16 @@ def register_product() -> None:
 
 
 def list_products() -> None:
-    pass
+    if len(products) > 0:
+        print('======== Products List ========')
+        for product in products:
+            print(product)
+            print('--------')
+            sleep(.5)
+    else:
+        print("We don't have any registered products yet")
+    sleep(2)
+    menu()
 
 
 def cart_product() -> None:
