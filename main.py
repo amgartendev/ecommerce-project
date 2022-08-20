@@ -3,7 +3,7 @@ from time import sleep
 from models.product import Product
 from utils.helper import format_float_str
 
-product: List[Product] = []
+products: List[Product] = []
 cart: List[Dict[Product, int]] = []
 
 
@@ -47,7 +47,17 @@ def menu() -> None:
 
 
 def register_product() -> None:
-    pass
+    print('======== Register Product ========')
+    name: str = input('Insert the product: ')
+    price: float = float(input('Insert the price: '))
+
+    product: Product = Product(name, price)
+
+    products.append(product)
+
+    print(f'{product.name} registered!')
+    sleep(1)
+    menu()
 
 
 def list_products() -> None:
