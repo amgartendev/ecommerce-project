@@ -82,7 +82,25 @@ def view_cart() -> None:
 
 
 def buy() -> None:
-    pass
+    if len(cart) > 0:
+        total_price: float = 0
+
+        print('======== Products in your Cart ========')
+        for item in cart:
+            for data in item.items():
+                print(data[0])
+                print(f'Quantity: {data[1]}')
+                total_price += data[0].price * data[1]
+                print('--------')
+                sleep(.5)
+        print(f'Total: {format_float_str(total_price)}')
+        print('Thanks! Come back soon :)')
+        cart.clear()
+        sleep(4)
+    else:
+        print("You don't have any product in your cart. Let's buy some!!")
+    sleep(2)
+    menu()
 
 
 def get_product_by_code(code: int) -> Product:
