@@ -74,7 +74,52 @@ def list_products() -> None:
 
 
 def cart_product() -> None:
-    pass
+    if len(products) > 0:
+        print('======== Add to your Cart ========')
+        print('Insert the code of the product that you want to add to your cart: ')
+        print('--------------------------------------------------------------------')
+        print('======== Products List ========')
+        for product in products:
+            print(product)
+            print('--------')
+            sleep(.5)
+
+        code: int = int(input(''))
+
+        product: Product = get_product_by_code(code)
+
+        if product:
+            if len(cart) > 0:
+                already_exists: bool = False
+                for item in cart:
+                    quantity: int = item.get(product)
+                    if quantity:
+                        item[product] = quantity + 1
+                        print(f'You have {quantity + 1} {product.name} in your cart now!')
+                        already_exists = True
+                        sleep(2)
+                        menu()
+
+                if not already_exists:
+                    prod = {product: 1}
+                    cart.append(prod)
+                    print(f'{product.name} added to your cart!')
+                    sleep(2)
+                    menu()
+            else:
+                item = {product: 1}
+                cart.append(item)
+                print(f'{product.name} added to your cart!')
+                sleep(2)
+                menu()
+        else:
+            print(f'This product does not exist!')
+            sleep(2)
+            menu()
+    else:
+        print("We are not selling any item yet... Come back later")
+    sleep(2)
+    menu()
 
 
 def view_cart() -> None:
