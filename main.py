@@ -123,7 +123,19 @@ def cart_product() -> None:
 
 
 def view_cart() -> None:
-    pass
+    if len(cart) > 0:
+        print('======== Your Cart ========')
+
+        for item in cart:
+            for data in item.items():
+                print(data[0])
+                print(f'Quantity: {data[1]}')
+                print('--------')
+                sleep(.5)
+    else:
+        print("You don't have any product in your cart. Let's buy some!!")
+        sleep(2)
+        menu()
 
 
 def buy() -> None:
