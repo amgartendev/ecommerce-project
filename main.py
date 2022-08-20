@@ -104,7 +104,12 @@ def buy() -> None:
 
 
 def get_product_by_code(code: int) -> Product:
-    pass
+    p: Product = None
+
+    for product in products:
+        if product.code == code:
+            p = product
+    return p
 
 
 if __name__ == '__main__':
